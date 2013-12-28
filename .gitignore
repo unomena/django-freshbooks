@@ -1,0 +1,10 @@
+/bin/
+/include/
+/lib/
+/local/
+/build/
+*.pyc
+*.egg-info
+*.sqlite
+*.sqlite3
+/dist/

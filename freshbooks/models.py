@@ -1,0 +1,55 @@
+from django.db import models
+
+class Client(models.Model):
+    first_name = models.CharField(max_length=128, blank=True, null=True)
+    last_name = models.CharField(max_length=128, blank=True, null=True)
+    organization = models.CharField(max_length=128, blank=True, null=True)
+    email = models.EmailField()
+    username = models.CharField(max_length=128, blank=True, null=True)
+    password = models.CharField(max_length=128, blank=True, null=True)
+    work_phone = models.CharField(max_length=32, blank=True, null=True)
+    home_phone = models.CharField(max_length=32, blank=True, null=True)
+    mobile = models.CharField(max_length=32, blank=True, null=True)
+    fax = models.CharField(max_length=32, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+    p_street1 = models.CharField(max_length=128, blank=True, null=True)
+    p_street2 = models.CharField(max_length=128, blank=True, null=True)
+    p_city = models.CharField(max_length=128, blank=True, null=True)
+    p_state = models.CharField(max_length=128, blank=True, null=True)
+    p_country = models.CharField(max_length=128, blank=True, null=True)
+    p_code = models.CharField(max_length=16, blank=True, null=True)
+    s_street1 = models.CharField(max_length=128, blank=True, null=True)
+    s_street2 = models.CharField(max_length=128, blank=True, null=True)
+    s_city = models.CharField(max_length=128, blank=True, null=True)
+    s_state = models.CharField(max_length=128, blank=True, null=True)
+    s_country = models.CharField(max_length=128, blank=True, null=True)
+    s_code = models.CharField(max_length=16, blank=True, null=True)
+    url = models.CharField(max_length=256, blank=True, null=True)
+
+class Invoice(models.Model):
+
+    client = models.ForeignKey(Client)
+    number = models.CharField(max_length=32, blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+    po_number = models.CharField(max_length=32, blank=True, null=True)
+    terms = models.TextField(blank=True, null=True)
+    first_name = models.CharField(max_length=128, blank=True, null=True)
+    last_name = models.CharField(max_length=128, blank=True, null=True)
+    organization = models.CharField(max_length=128, blank=True, null=True)
+    p_street1 = models.CharField(max_length=128, blank=True, null=True)
+    p_street2 = models.CharField(max_length=128, blank=True, null=True)
+    p_city = models.CharField(max_length=128, blank=True, null=True)
+    p_state = models.CharField(max_length=128, blank=True, null=True)
+    p_country = models.CharField(max_length=128, blank=True, null=True)
+    p_code = models.CharField(max_length=16, blank=True, null=True)
+    amount = models.DecimalField(max_digits=16, decimal_places=2, default=0)
+    amount_outstanding = models.DecimalField(max_digits=16, decimal_places=2, default=0)
+    paid = models.DecimalField(max_digits=16, decimal_places=2, default=0)
+    discount = models.DecimalField(max_digits=6, decimal_places=3, default=0)
+    status = models.CharField(max_length=16, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+    url = models.CharField(max_length=256, blank=True, null=True)
+
+
+
+
