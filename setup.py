@@ -18,8 +18,8 @@ setup(
     url='http://github.com/unomena/django-freshbooks',
     packages = ['freshbooks'],
     install_requires = [
-        'django<=1.6',
-        'south<=0.8.4',
+        'django',
+        'south',
     ],
     classifiers=[
         'Framework :: Django',
