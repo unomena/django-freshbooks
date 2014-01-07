@@ -1,29 +1,20 @@
 from django.core.management.base import BaseCommand
-from django.conf import settings
 
 from freshbooks import api, models
 
 class Command(BaseCommand):
 
-    def sync_clients(self):
-        objects = api.Client.list(get_all=True)
-        model = models.Client
-        for o in objects:
-           o.sync(model)
-    
-    def sync_invoices(self):
-        objects = api.Invoice.list(get_all=True)
-        model = models.Invoice
-        for o in objects:
-            o.sync(model)
-
     def handle(self, *args, **options):
-        
-        api.setup(
-            '%s.freshbooks.com' % settings.FRESHBOOKS_APP_NAME,
-            settings.FRESHBOOKS_AUTH_TOKEN,
-            settings.FRESHBOOKS_APP_NAME
-        )
 
-        self.sync_clients()
-        self.sync_invoices()
+        for acc in models.Account.objects.all():
+
+            api.setup(acc)
+
+#            for o in api.Client.list(get_all=True):
+#                o.sync(models.Client)
+
+#            for o in api.Invoice.list(get_all=True):
+#                o.sync(models.Invoice, models.Line)
+
+            for o in api.Estimate.list(get_all=True):
+                o.sync(models.Estimate, models.Line)
